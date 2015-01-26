@@ -1,0 +1,27 @@
+{
+  "name": "gulp-dev-libraries",
+  "version": "0.0.0",
+  "homepage": "https://github.com/iamlalit/epageo-website",
+  "authors": [
+    "lalit sachdeva"
+  ],
+  "moduleType": [
+    "amd",
+    "node"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "./lib",
+    "test",
+    "tests"
+  ],
+  "devDependencies": {
+    "bootstrap-sass-official": "~3.2.0",
+    "modernizr": "~2.8.3",
+    "angularjs": "~1.2.26",
+    "bourbon": "~4.0.2"
+  }
+}

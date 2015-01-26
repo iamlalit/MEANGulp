@@ -1,0 +1,5 @@
+!.gitkeep
+node_modules/
+public/
+lib/
+.sass-cache/

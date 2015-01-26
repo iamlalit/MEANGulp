@@ -1,0 +1,52 @@
+
+{% include "_header.html" ignore missing %}  
+
+<div class="container">
+	<h2><a href="#">{{post['title']}}</a></h2>
+	Posted- {{post['date']}}<i>, By {{post['author']}}</i><br>
+	<hr>
+	{% autoescape false %}
+	{{post['body']}}
+	{% endautoescape %}
+	<p>
+	<em>Filed Under</em>:
+	{% for tag in post.tags %}
+	    {% if loop.first %}
+	        <a href="/tag/{{tag}}">{{tag}}</a>
+	    {% else %}
+	        , <a href="/tag/{{tag}}">{{tag}}</a>
+	    {% endif %}
+	{% endfor %}
+	<p>
+	<h4>Comments:</h4>
+	<ul>
+		{% for comment in post.comments %}
+		<label>Commneted by:</label> {{comment['author']}}<br>
+		{{comment['body']}}<br>
+		<label>Commented on:</label> {{comment['currentDate']}}
+		<hr>
+		{% endfor %}
+		<h3>Add a comment</h3>
+
+		<form action="/newcomment" method="POST">
+	        <input type="hidden" name="permalink" value="{{post['permalink']}}">
+			<h4>{{errors}}</h4>
+		
+	        <div class="form-group">
+	          <label>Name</label><span> (required)</span>
+	          <input type="text" name="commentName" value="{{comment['name']}}" class="form-control" placeholder="Enter name">
+	        </div>
+	        <div class="form-group">
+	          <label>Email</label><span> (optional)</span>
+	          <input type="email" name="commentEmail" value="{{comment['email']}}" class="form-control" placeholder="Enter email">
+	        </div>
+	        <div class="form-group">
+	          <label>Comment</label>
+	          <textarea name="commentBody" class="form-control" cols="60" rows="10">{{comment['body']}}</textarea>
+	        </div>
+	        <button type="submit" class="btn btn-default">Submit</button>
+	      </form>
+
+	</ul>
+</div>
+{% include "./_footer.html" ignore missing %}
