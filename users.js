@@ -31,6 +31,7 @@ function UsersDAO(db) {
         // New +
         users.insert(user, function (err, result) {
             "use strict";
+            console.log(err)
             callback(err, result[0]);
         });
         // Old +

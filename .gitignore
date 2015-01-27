@@ -3,3 +3,4 @@ node_modules/
 public/
 lib/
 .sass-cache/
+npm-debug.log

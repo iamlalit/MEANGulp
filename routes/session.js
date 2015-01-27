@@ -1,5 +1,6 @@
 var UsersDAO = require('../users').UsersDAO
-  , SessionsDAO = require('../sessions').SessionsDAO;
+  , SessionsDAO = require('../sessions').SessionsDAO
+  , https = require('https');
 
 /* The SessionHandler must be constructed with a connected db */
 function SessionHandler (db) {
@@ -90,6 +91,7 @@ function SessionHandler (db) {
                             password_error:"",
                             email:"", username_error:"", email_error:"",
                             verify_error :"",
+                            captch_error : "",
                             header: headerMenu});
     }
 
@@ -124,6 +126,25 @@ function SessionHandler (db) {
         }
         return true;
     }
+    var SECRET = "6LdXAgETAAAAACfNJyKnolwkgD1ZeyrB3gg9oeSW";
+    var key = '';
+    function verifyRecaptcha(key, callback) {
+        https.get("https://www.google.com/recaptcha/api/siteverify?secret=" + SECRET + "&response=" + key, function(res) {
+            var data = "";
+            res.on('data', function (chunk) {
+                data += chunk.toString();
+            });
+            res.on('end', function() {
+                try {
+                        var parsedData = JSON.parse(data);
+                        callback(parsedData.success);
+                } catch (e) {
+                        callback(false);
+                }
+            });
+        });
+    }
+
 
     this.handleSignup = function(req, res, next) {
         "use strict";
@@ -132,33 +153,47 @@ function SessionHandler (db) {
         var username = req.body.username
         var password = req.body.password
         var verify = req.body.verify
-
+        var captchaResponse = req.body["g-recaptcha-response"];
+        var response = false;        
         // set these up in case we have an error case
         var errors = {'username': username, 'email': email}
+
+
         if (validateSignup(username, password, verify, email, errors)) {
-            users.addUser(username, password, email, function(err, user) {
-                "use strict";
+            verifyRecaptcha(captchaResponse, function(success) {
+                if (success) {
+                    users.addUser(username, password, email, function(err, user) {
+                        "use strict";
 
-                if (err) {
-                    // this was a duplicate
-                    if (err.code == '11000') {
-                        errors['username_error'] = "Username already in use. Please choose another";
-                        return res.render("signup", errors);
-                    }
-                    // this was a different error
-                    else {
-                        return next(err);
-                    }
+                        if (err) {
+                            // this was a duplicate
+                            if (err.code == '11000') {
+                                errors['username_error'] = "Username already in use. Please choose another";
+                                return res.render("signup", errors);
+                            }
+                            // this was a different error
+                            else {
+                                return next(err);
+                            }
+                        }
+
+                        sessions.startSession(user['_id'], function(err, session_id) {
+                            "use strict";
+                            console.log("here");
+                            if (err) return next(err);
+
+                            res.cookie('session', session_id);
+                            return res.redirect('/');
+                        });
+                    });
+                    
+
+                }else{
+                    var headerMenu = { '/': 'Home', '/login': 'Login' };
+                    return res.render("signup", {captch_error:"Please check the checkbox",
+                                                header: headerMenu,
+                                                'username': username, 'email': email  });   
                 }
-
-                sessions.startSession(user['_id'], function(err, session_id) {
-                    "use strict";
-
-                    if (err) return next(err);
-
-                    res.cookie('session', session_id);
-                    return res.redirect('/');
-                });
             });
         }
         else {
@@ -166,6 +201,8 @@ function SessionHandler (db) {
             return res.render("signup", errors);
         }
     }
+    
+
 
     this.displayWelcomePage = function(req, res, next) {
         "use strict";
