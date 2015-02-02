@@ -7,9 +7,13 @@
 
             <div class="col-sm-4 col-sm-offset-4">
               <h3>Login &amp start blogging</h3>
-              <div class="form-group">
-                {{login_error}}
-              </div>
+              {% if login_error %}
+                <div class="alert alert-danger" role="alert">
+                  <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                  <span class="sr-only">Error:</span>
+                  {{login_error}}
+                </div>
+              {% endif %}
               <div class="form-group">
                 <label class="control-label">Username</label>
                 <input type="text" class="form-control" placeholder="Email"  name="username" value="{{username}}">

@@ -158,7 +158,6 @@ function SessionHandler (db) {
         // set these up in case we have an error case
         var errors = {'username': username, 'email': email}
 
-
         if (validateSignup(username, password, verify, email, errors)) {
             verifyRecaptcha(captchaResponse, function(success) {
                 if (success) {
