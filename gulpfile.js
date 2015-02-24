@@ -74,6 +74,7 @@ gulp.task('sass-custom', function () {
 
 gulp.task('watch', function() {
   gulp.watch('styles/**/*.scss', ['sass-custom']);
+  gulp.watch('styles/bootstrap.scss', ['sass-lib']);
   gulp.watch('scripts/**/*.js', ['scripts-custom']);
 });
 
@@ -111,6 +112,7 @@ gulp.task('scripts-custom', function() {
     var dir = config.scripts();
     var stream = gulp.src([
       'scripts/app.js',
+      'scripts/socialAuth.js'
        ]
      )
     .pipe(concat('app.js'))

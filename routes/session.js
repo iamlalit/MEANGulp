@@ -95,6 +95,14 @@ function SessionHandler (db) {
                             header: headerMenu});
     }
 
+    this.displayPasswordRecoveryPage = function(req, res, next) {
+        "use strict";
+        var headerMenu = { '/': 'Home', '/login': 'Login' };
+
+        res.render("passwordRecovery", {
+                    header: headerMenu});
+    }
+
     function validateSignup(username, password, verify, email, errors) {
         "use strict";
         var USER_RE = /^[a-zA-Z0-9_-]{3,20}$/;

@@ -21,10 +21,19 @@
 	<h4>Comments:</h4>
 	<ul>
 		{% for comment in post.comments %}
-		<label>Commneted by:</label> {{comment['author']}}<br>
-		{{comment['body']}}<br>
-		<label>Commented on:</label> {{comment['currentDate']}}
-		<hr>
+			<form action="/like" method="POST">
+				<input type="hidden" name="permalink", value="{{post['permalink']}}">
+				<input type="hidden" name="comment_ordinal", value="{{loop.index0}}">
+				<label>Commneted by:</label> {{comment['author']}}<br>
+				{{comment['body']}}<br>
+				<label>Commented on:</label> {{comment['currentDate']}}<br>
+				<label>Likes:</label> {{comment['num_likes']}} 
+				<!-- <input type="submit" value="Like"> -->
+
+				<a href="javascript:void(0)" class="like-icon"><i class="glyphicon glyphicon-thumbs-up"></i></a>
+				<br>
+			</form>
+			<hr>
 		{% endfor %}
 		<h3>Add a comment</h3>
 
@@ -50,3 +59,9 @@
 	</ul>
 </div>
 {% include "./_footer.html" ignore missing %}
+<script type="text/javascript">
+	$(document).on("click",".like-icon",function(){
+		var form = $(this).closest("form");
+		form.submit();
+    });
+</script>

@@ -1,3 +1,4 @@
+/* color scheme */
 
 /* Set the fixed height of the footer here */
 #footer {
@@ -26,4 +27,49 @@ html, body {
 #footer .text-muted{
 	margin: 0;
 	text-align: center;
+}
+/*login screen*/
+.login-buttons{
+  .brand-red{
+    padding:0px 8px;
+    color: #a94442;
+  }
+}
+
+$base-padding: 15px;
+$golden: 1.618;
+@for $i from -3 through 5 {
+
+  .space-top-#{$i}x {
+    padding-top: modular-scale($base-padding, $i, $golden);
+  } 
+  .space-bottom-#{$i}x {
+    padding-bottom: modular-scale($base-padding, $i, $golden);
+  }
+  .space-left-#{$i}x {
+    padding-left: modular-scale($base-padding, $i, $golden);
+  }
+  .space-right-#{$i}x {
+    padding-right: modular-scale($base-padding, $i, $golden);
+  }
+  .space-#{$i}x {
+    padding: modular-scale($base-padding, $i, $golden);
+  }
+  // modular scale top/bottom padding only
+  // --------------------------------------------------
+  .space-#{$i}v {
+    padding: modular-scale($base-padding, $i, $golden) 0;
+  }
+  // modular scale left/right padding only
+  // --------------------------------------------------
+  .space-#{$i}h {
+    padding: 0 modular-scale($base-padding, $i, $golden)
+  }
+}
+
+//For post page
+.like-icon{
+  padding: 0px 20px;
+  font-size: 20px;
+  vertical-align: middle;
 }

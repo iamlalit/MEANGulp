@@ -25,6 +25,9 @@ module.exports = exports = function(app, db) {
     app.get('/newpost', contentHandler.displayNewPostPage);
     app.post('/newpost', contentHandler.handleNewPost);
 
+    // Used to process a like on a blog post
+    app.post('/like', contentHandler.handleLike);
+
     // Login form
     app.get('/login', sessionHandler.displayLoginPage);
     app.post('/login', sessionHandler.handleLoginRequest);
@@ -38,6 +41,9 @@ module.exports = exports = function(app, db) {
     // Signup form
     app.get('/signup', sessionHandler.displaySignupPage);
     app.post('/signup', sessionHandler.handleSignup);
+
+    // Forgot password page
+    app.get('/passwordrecovery', sessionHandler.displayPasswordRecoveryPage)
 
     // Error handling middleware
     app.use(ErrorHandler);

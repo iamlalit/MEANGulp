@@ -48,3 +48,81 @@
 // Utility classes
 @import "../lib/bootstrap-sass-official/assets/stylesheets/bootstrap/utilities";
 @import "../lib/bootstrap-sass-official/assets/stylesheets/bootstrap/responsive-utilities";
+
+//include bourbon
+// Settings
+@import "../lib/bourbon/dist/settings/prefixer";
+@import "../lib/bourbon/dist/settings/px-to-em";
+@import "../lib/bourbon/dist/settings/asset-pipeline";
+
+// Custom Helpers
+@import "../lib/bourbon/dist/helpers/convert-units";
+@import "../lib/bourbon/dist/helpers/gradient-positions-parser";
+@import "../lib/bourbon/dist/helpers/is-num";
+@import "../lib/bourbon/dist/helpers/linear-angle-parser";
+@import "../lib/bourbon/dist/helpers/linear-gradient-parser";
+@import "../lib/bourbon/dist/helpers/linear-positions-parser";
+@import "../lib/bourbon/dist/helpers/linear-side-corner-parser";
+@import "../lib/bourbon/dist/helpers/radial-arg-parser";
+@import "../lib/bourbon/dist/helpers/radial-positions-parser";
+@import "../lib/bourbon/dist/helpers/radial-gradient-parser";
+@import "../lib/bourbon/dist/helpers/render-gradients";
+@import "../lib/bourbon/dist/helpers/shape-size-stripper";
+@import "../lib/bourbon/dist/helpers/str-to-num";
+
+// Custom Functions
+@import "../lib/bourbon/dist/functions/assign";
+@import "../lib/bourbon/dist/functions/color-lightness";
+@import "../lib/bourbon/dist/functions/flex-grid";
+@import "../lib/bourbon/dist/functions/golden-ratio";
+@import "../lib/bourbon/dist/functions/grid-width";
+@import "../lib/bourbon/dist/functions/modular-scale";
+@import "../lib/bourbon/dist/functions/px-to-em";
+@import "../lib/bourbon/dist/functions/px-to-rem";
+@import "../lib/bourbon/dist/functions/strip-units";
+@import "../lib/bourbon/dist/functions/tint-shade";
+@import "../lib/bourbon/dist/functions/transition-property-name";
+@import "../lib/bourbon/dist/functions/unpack";
+
+// CSS3 Mixins
+@import "../lib/bourbon/dist/css3/animation";
+@import "../lib/bourbon/dist/css3/appearance";
+@import "../lib/bourbon/dist/css3/backface-visibility";
+@import "../lib/bourbon/dist/css3/background";
+@import "../lib/bourbon/dist/css3/background-image";
+@import "../lib/bourbon/dist/css3/border-image";
+@import "../lib/bourbon/dist/css3/border-radius";
+@import "../lib/bourbon/dist/css3/box-sizing";
+@import "../lib/bourbon/dist/css3/calc";
+@import "../lib/bourbon/dist/css3/columns";
+@import "../lib/bourbon/dist/css3/filter";
+@import "../lib/bourbon/dist/css3/flex-box";
+@import "../lib/bourbon/dist/css3/font-face";
+@import "../lib/bourbon/dist/css3/font-feature-settings";
+@import "../lib/bourbon/dist/css3/hyphens";
+@import "../lib/bourbon/dist/css3/hidpi-media-query";
+@import "../lib/bourbon/dist/css3/image-rendering";
+@import "../lib/bourbon/dist/css3/keyframes";
+@import "../lib/bourbon/dist/css3/linear-gradient";
+@import "../lib/bourbon/dist/css3/perspective";
+@import "../lib/bourbon/dist/css3/radial-gradient";
+@import "../lib/bourbon/dist/css3/transform";
+@import "../lib/bourbon/dist/css3/transition";
+@import "../lib/bourbon/dist/css3/user-select";
+@import "../lib/bourbon/dist/css3/placeholder";
+
+// Addons & other mixins
+@import "../lib/bourbon/dist/addons/button";
+@import "../lib/bourbon/dist/addons/clearfix";
+@import "../lib/bourbon/dist/addons/directional-values";
+@import "../lib/bourbon/dist/addons/ellipsis";
+@import "../lib/bourbon/dist/addons/font-family";
+@import "../lib/bourbon/dist/addons/hide-text";
+@import "../lib/bourbon/dist/addons/html5-input-types";
+@import "../lib/bourbon/dist/addons/position";
+@import "../lib/bourbon/dist/addons/prefixer";
+@import "../lib/bourbon/dist/addons/retina-image";
+@import "../lib/bourbon/dist/addons/size";
+@import "../lib/bourbon/dist/addons/timing-functions";
+@import "../lib/bourbon/dist/addons/triangle";
+@import "../lib/bourbon/dist/addons/word-wrap";
